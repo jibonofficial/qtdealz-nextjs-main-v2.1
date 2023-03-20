@@ -1,0 +1,279 @@
+/* Global Colors */
+:root {
+  --dark-grey: #222222;
+}
+.red-text {
+  color: red;
+}
+
+/* Blur Images on local dev environment */
+/* .filter-all-media img,
+.filter-all-media video,
+.filter-all-media iframe,
+.filter-all-media div[style*="url"],
+.filter-all-media span[style*="url"],
+.filter-all-media a[style*="url"],
+.filter-all-media i[style*="url"] {
+  filter: blur(50px) !important;
+} */
+
+/* Navbar styles */
+.search-box {
+  border-radius: 0;
+  border: 1px solid #ccc !important;
+  padding: 11px;
+  font-size: 14px;
+}
+input[type="search"]::-webkit-search-cancel-button {
+  display: none;
+}
+.search-box:focus {
+  outline: none;
+}
+.search-box::placeholder {
+  color: #222222;
+}
+.nav-icon {
+  color: #222222 !important;
+}
+.cart-product-image {
+  object-fit: cover;
+}
+
+/* Footer styles */
+footer {
+  --grey-text-color: #a4a4a4;
+  --grey-second-bg: #333333;
+  margin: 25px;
+  padding: 40px 70px 20px 70px;
+  background-color: var(--dark-grey);
+  font-size: 15px;
+}
+@media only screen and (max-width: 900px) {
+  footer {
+    margin: 15px;
+    padding: 15px;
+  }
+}
+.footer-grey-text {
+  color: var(--grey-text-color);
+}
+.footer-credit {
+  background-color: var(--grey-second-bg);
+  padding: 30px;
+}
+footer .Mui-disabled {
+  background-color: transparent !important;
+  opacity: 1 !important;
+}
+.accordion-details {
+  color: var(--grey-text-color);
+}
+.accordion-details fieldset {
+  border-color: #444444 !important;
+  border-radius: 0 !important;
+}
+.accordion-details a {
+  text-decoration: none;
+  color: inherit;
+}
+.footer-address {
+}
+.footer-services-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-services-list a:hover {
+  color: #fff;
+}
+.footer-logo-icon {
+  max-width: 220px;
+  max-height: 220px;
+}
+.footer-pages {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  font-size: 15px;
+  color: var(--grey-text-color);
+}
+@media only screen and (max-width: 479px) {
+  .footer-pages,
+  .footer-copyright {
+    font-size: 12px !important;
+  }
+}
+.footer-pages ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.footer-pages li:not(:first-child):before {
+  content: "\00a0\00a0\00a0|\00a0\00a0\00a0";
+  color: #444444;
+}
+.footer-pages a {
+  text-decoration: none;
+  color: var(--grey-text-color);
+}
+.footer-pages a:hover {
+  color: #fff;
+}
+
+/* Top category style */
+.category-paper {
+  padding: 4px 4px 0 4px !important;
+}
+.category-img {
+  width: 160px;
+  height: 160px;
+  object-fit: cover;
+  margin-bottom: -2px;
+}
+@media (max-width: 500px) {
+  .category-img {
+    width: 140px;
+    height: 140px;
+  }
+}
+@media (max-width: 320px) {
+  .category-img {
+    width: 100px;
+    height: 100px;
+  }
+}
+.cat-name {
+  margin-top: 2px;
+  text-align: center;
+  font-size: 14px;
+  color: var(--dark-grey);
+}
+.cat-grid-item a {
+  text-decoration: none;
+}
+
+/* Home Styles */
+.home-content {
+  max-width: 1170px;
+  padding: 15px;
+  margin: 30px auto;
+}
+@media screen and (max-width: 500px) {
+  .home-content {
+    margin: 0 auto;
+  }
+}
+
+.prod-box-sizes-button {
+  border: none;
+  font-weight: 600;
+  font-size: 13px;
+  background-color: #eef3f5;
+  padding: 5px 10px;
+  margin-top: 5px;
+  margin-bottom: 15px;
+  margin-right: 7px;
+}
+
+/* Product */
+.pd-details .swiper-slide {
+  text-align: center;
+  font-size: 18px;
+  background: #fff;
+
+  /* Center slide text vertically */
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  -webkit-box-pack: center;
+  -ms-flex-pack: center;
+  -webkit-justify-content: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
+}
+
+.pd-details .swiper-slide {
+  background-size: cover;
+  background-position: center;
+}
+
+.pd-details .swiper-view {
+  height: 500px;
+  width: 100%;
+}
+
+.pd-details .swiper-button-disabled {
+  pointer-events: unset !important;
+}
+
+@media screen and (max-width: 600px) {
+  .pd-details .swiper-view {
+    height: 300px;
+  }
+}
+
+.pd-details .swiper-preview {
+  height: 20%;
+  box-sizing: border-box;
+  padding: 10px 10px;
+}
+
+.pd-details .swiper-preview .swiper-slide {
+  width: 30%;
+  height: 80%;
+  opacity: 0.4;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+.pd-details .swiper-preview .swiper-slide-thumb-active {
+  opacity: 1;
+}
+
+.pd-details .swiper-slide img {
+  display: block;
+  width: 100%;
+  height: 90%;
+  object-fit: contain;
+  cursor: pointer;
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+  color: rgb(175, 168, 168) !important;
+}
+
+/* Red Cross sign style */
+.cross {
+  position: relative;
+  display: inline-block;
+  color: #222222;
+}
+.cross::before,
+.cross::after {
+  content: "";
+  width: 100%;
+  position: absolute;
+  right: 0;
+  top: 50%;
+}
+.cross::before {
+  border-bottom: 3px solid red;
+  -webkit-transform: skewY(-30deg);
+  transform: skewY(-30deg);
+}
+.cross::after {
+  border-bottom: 3px solid red;
+  -webkit-transform: skewY(30deg);
+  transform: skewY(30deg);
+}
+.order-form fieldset:focus {
+  outline: none !important;
+  border: none !important;
+}
