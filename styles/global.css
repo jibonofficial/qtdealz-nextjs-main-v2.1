@@ -277,3 +277,10 @@ footer .Mui-disabled {
   outline: none !important;
   border: none !important;
 }
+
+@keyframes png-animatide {
+  0%    { opacity: 0; }
+  20%   { opacity: 1; }
+  80%   { opacity: 0; }
+  100%  { opacity: 1; }
+}
