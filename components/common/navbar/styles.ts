@@ -204,7 +204,7 @@ export const confirmOrderBtn: muiSxPropType = {
   fontWeight: 500,
   fontSize: 16,
   textTransform: "capitalize",
-  boxShadow: '0px 0px 15px #000000a6'
+  boxShadow: "rgba(0, 0, 0, 0.65) 0px 0px 15px"
 };
 
 export const mobileNavListItemStyles: muiSxPropType = {
