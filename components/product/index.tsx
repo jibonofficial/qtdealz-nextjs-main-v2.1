@@ -415,7 +415,7 @@ export const Product = ({ id }: { id: string }) => {
             }`}
           />
         )} */}
-        <Grid container mb={3} justifyContent="space-evenly">
+        <Grid container mb={3} mt={3} justifyContent="space-evenly">
           <Grid item md={5} xs={12} sm={10}>
             <Typography
                 fontWeight={appStyles.w600}
@@ -800,18 +800,15 @@ export const Product = ({ id }: { id: string }) => {
             </form>
             <Typography pt={1} variant="body2">
               <span>
-                <strong style={{ color: "red" }}>Delivery:</strong> Delivery in 1 working day
-                between 11 Am To 8 PM.
+                <strong style={{ color: "red" }}>Delivery Time:</strong> 1 Working day between 11 AM till 8 PM
               </span>
               <br />
               <span>
-                <strong style={{ color: "red" }}>Free Delivery:</strong> For all orders above 150
-                QAR. Below 150 QAR Delivery charge is 10 QAR.
+                <strong style={{ color: "red" }}>Delivery Charge:</strong> FREE above 150 {appConfig.product.currency}. 10 {appConfig.product.currency} below 150.
               </span>
               <br />
               <span>
-                <strong style={{ color: "red" }}>Free Return & Replacement:</strong> In 24 hours. No
-                questions asked.
+                <strong style={{ color: "red" }}>Return & Replacement:</strong> In 24 Hours. No questions asked
               </span>
             </Typography>
           </Grid>

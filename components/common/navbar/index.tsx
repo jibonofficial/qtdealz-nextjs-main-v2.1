@@ -159,7 +159,7 @@ export default function Navbar() {
           </Container>
         </Box>
         <Box sx={styles.catNavStyles}>
-          <Container maxWidth="md" sx={{ bgcolor: "white" }}>
+          <Container maxWidth="lg" sx={{ bgcolor: "white" }}>
             <Grid2
               container
               wrap="nowrap"

@@ -1,5 +1,6 @@
 import { Container, createTheme, ThemeProvider, Typography } from "@mui/material";
 import HomeLayout from "components/layouts/homeLayout";
+import appConfig from "config";
 import Head from "next/head";
 
 export default function TermsAndConditions() {
@@ -19,13 +20,13 @@ export default function TermsAndConditions() {
           use periodically. By Placing an order on the site, the customer agrees to the below
           mentioned Terms and conditions and privacy policy as specified.
         </div>
-        <h2>CUSTOMERS WITH ORDERS OF 150 QAR OR MORE:</h2>
+        <h2>CUSTOMERS WITH ORDERS OF 150 {appConfig.product.currency} OR MORE:</h2>
         <div>
           <ul>
             <li>
-              We appreciate our customers for shopping for more than&nbsp;<b>150+ QAR</b>, for the
+              We appreciate our customers for shopping for more than&nbsp;<b>150+ {appConfig.product.currency}</b>, for the
               same reason we are not receiving any delivery charges on orders of&nbsp;
-              <b>150+ QAR</b> which are waived off just to improve our relationship with our
+              <b>150+ {appConfig.product.currency}</b> which are waived off just to improve our relationship with our
               customers, not only that our customers also receive a free return without any charges
               when they are not satisfied with even one of the ordered products or all.
             </li>
@@ -38,7 +39,7 @@ export default function TermsAndConditions() {
             <li>
               <b>Replacement:</b>In case of replacement there will be no delivery charges applicable
               for the below reasons. Apart from the below reason customer will be asked to pay
-              delivery charge of 10 QAR for replacement
+              delivery charge of 10 {appConfig.product.currency} for replacement
               <ol>
                 <li>Wrong Product delivered</li>
                 <li>Damaged / Defective product delivered</li>
@@ -128,7 +129,7 @@ export default function TermsAndConditions() {
               estimate. We encourage you to order in a proper way to avoid delays caused by shipping
               or product availability. We share this information with our customers frequently that
               we have marked some&nbsp;<b>non-Service</b>&nbsp;areas in&nbsp;
-              <b>QATAR</b>&nbsp;which are out of route, due to which we charge&nbsp;<b>QAR 20</b>
+              <b>QATAR</b>&nbsp;which are out of route, due to which we charge&nbsp;<b>{appConfig.product.currency} 20</b>
               &nbsp;as delivery charges on the request of&nbsp;<b>Courier Companies</b>
             </li>
             <li>
