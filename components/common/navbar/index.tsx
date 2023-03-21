@@ -118,11 +118,7 @@ export default function Navbar() {
               </Grid2>
               <Grid2 sx={{ display: { xs: "none", md: "block" } }}>
                 <Link href="/" className="logo-link">
-                  <img
-                    src={`/images/qtdealz-logo.png`}
-                    alt="logo"
-                    className="header-logo"
-                  />
+                  <img src={`/images/qtdealz-logo.png`} alt="logo" className="header-logo" />
                 </Link>
               </Grid2>
               <Grid2 xs>
@@ -184,6 +180,7 @@ export default function Navbar() {
                     className={`nav-cat-container ${
                       catId === category._id ? "nav-item-active" : ""
                     }`}
+                    style={{ position: "relative" }}
                   >
                     <Link
                       href={`/category/${category._id}/${category.category_name}`}
@@ -191,6 +188,16 @@ export default function Navbar() {
                     >
                       {category.category_name.toUpperCase()}
                     </Link>
+                    {category.category_name.toUpperCase() == "CLEARANCE SALE" ? ( <img
+                        style={{ position: "absolute", top: 0, right: "10px",width:'24px' }}
+                        src="/images/sale.png"
+                      />) : null} 
+                    {category.category_name.toUpperCase() == "NEW ARRIVAL" ? (
+                      <img
+                        style={{ position: "absolute", top: 0, right: "10px",width:'24px' }}
+                        src="/images/new.png"
+                      />
+                    ) : null}
                   </Grid2>
                 ))}
             </Grid2>

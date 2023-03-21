@@ -18,6 +18,7 @@ export const WhatsappFab = () => {
           xs:10,
           sm:30
         },
+        zIndex:999999
       }}
     >
       <Stack spacing={1} alignItems="center">

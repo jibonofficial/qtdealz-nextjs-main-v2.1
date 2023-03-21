@@ -7,9 +7,11 @@ import {
   FormHelperText,
   Grid,
   InputAdornment,
+  makeStyles,
   MenuItem,
   Select,
   Stack,
+  StyledComponentProps,
   TextField,
   Typography,
   useMediaQuery,
@@ -56,6 +58,8 @@ import { BlackButton, YellowButton } from "components/common/styled/buttons";
 import { RelatedProducts } from "./relatedProducts";
 import { NotificationDrawer } from "./notificationDrawer";
 import { ProductFeedback } from "./feedback";
+
+
 
 interface ProductFormValues {
   colorValue: string;
@@ -485,7 +489,7 @@ export const Product = ({ id }: { id: string }) => {
               fontWeight={appStyles.w600}
               fontSize={{ xs: "1.3rem", sm: "h5.fontSize" }}
               textAlign="center"
-              mt={3}
+              mt={2}
             >
               {productData?.special_offer_text}
             </Typography>
@@ -758,6 +762,9 @@ export const Product = ({ id }: { id: string }) => {
                   justifyContent="center"
                   sx={{ my: 1 }}
                 >
+                  <Grid>
+
+                  </Grid>
                   <Grid item>
                     <YellowButton
                       type="submit"

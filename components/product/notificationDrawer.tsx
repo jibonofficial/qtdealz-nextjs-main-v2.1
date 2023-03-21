@@ -22,6 +22,14 @@ import { cartDrawerElAtom, notificationDrawerElAtom } from "../../atoms/atoms";
 import appConfig from "../../config";
 import { BlackButton } from "../common/styled/buttons";
 import * as styles from "../common/navbar/styles";
+import { Courgette } from "@next/font/google";
+
+export const ccurgette = Courgette({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["sans-serif"],
+});
 
 interface Props {
   open: boolean;
@@ -87,7 +95,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               sm: 2,
               xs: 6,
             }}
-            bgcolor={yellow[600]} 
+            bgcolor={`#FFF850`} 
             p={1}
           >
             <Typography
@@ -97,7 +105,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               py={1}
               // bgcolor={yellow[600]}
             >
-              <span style={{ fontWeight: 600, fontSize: '18px', lineHeight: "138.52%" }}>Product successfully added</span>
+              <span style={{ fontWeight: 700, fontSize: '24px', lineHeight: "138.52%",fontFamily: ccurgette.style.fontFamily, }}>Product successfully added</span>
               <br />
               <span style={{ color: "red", fontStyle: "italic", fontWeight: 600 }}>Add more Save more</span> - 10 {appConfig.product.currency} delivery charge. {" "}
               <span style={{ color: "red" }}>FREE</span> Delivery above <span style={{ fontWeight: 700 }}>150 {appConfig.product.currency}</span>.

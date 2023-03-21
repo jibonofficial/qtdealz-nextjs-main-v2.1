@@ -1,12 +1,17 @@
-import { Box, CircularProgress, Paper, Rating, Stack, Typography } from "@mui/material";
+import { CircularProgress, Paper, Rating, Stack, Typography } from "@mui/material";
 import Grid2 from "@mui/material/Unstable_Grid2";
 import { useInfiniteQuery } from "@tanstack/react-query";
 import { fetchProductReviews } from "backend/reviews";
 import { appStyles } from "components/common/appColors";
 import { BlackButton } from "components/common/styled/buttons";
-import appConfig from "config";
 import Image from "next/image";
 import { Fragment } from "react";
+import CloseIcon from "@mui/icons-material/Close";
+import { Box, IconButton, Modal } from "@mui/material";
+import appConfig from "config";
+import React, { useState } from "react";
+import { Controller, Navigation, Thumbs } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 import * as styles from "./style";
 
 export const ProductFeedback = ({ productId }: { productId: string }) => {
@@ -29,6 +34,17 @@ export const ProductFeedback = ({ productId }: { productId: string }) => {
       getNextPageParam: (lastPage) => lastPage.nextPage ?? undefined,
     }
   );
+  const [open, setOpen] = React.useState(false);
+  const [selectedImg, setSelectedImg] = useState<any>(null);
+
+  const handleOpen = (event: React.MouseEvent<HTMLImageElement, MouseEvent>, name: Object) => {
+    setSelectedImg(name);
+    setOpen(true);
+  };
+  const handleClose = () => {
+    setSelectedImg(null);
+    setOpen(false);
+  };
 
   return (
     <Box sx={styles.customerFeedbackContainer}>
@@ -89,12 +105,45 @@ export const ProductFeedback = ({ productId }: { productId: string }) => {
                                 alt="product review captures"
                                 width={74}
                                 height={74}
+                                onClick={(event) => handleOpen(event, review.review_images)}
                               />
                             ))}
+                            {/* {review.review_images && (
+                              <Slider images={sliderImages} youtubeLink={productData?.youtube_link} />
+                            )} */}
                           </Stack>
                         </Box>
                       </Stack>
                     </Paper>
+                    <Modal open={open} onClose={handleClose}>
+                      <Box sx={styles.imageModalStyle}>
+                        <IconButton sx={styles.imageModalCloseButton} onClick={handleClose}>
+                          <CloseIcon />
+                        </IconButton>
+                        <div className="modal-slider-container">
+                          <Swiper
+                            modules={[Navigation, Thumbs, Controller]}
+                            initialSlide={0}
+                            navigation={
+                              review.review_images && review.review_images.length > 1 ? true : false
+                            }
+                            slidesPerView={1}
+                            className="swiper-view"
+                          >
+                            {selectedImg &&
+                              selectedImg.map((img: any, index: any) => (
+                                <SwiperSlide aria-valuetext={img.name} key={index}>
+                                  <img
+                                    src={`${appConfig.api.reviewImgUrl}/${img.name}`}
+                                    alt={`product-${img.name}`}
+                                    loading="lazy"
+                                  />
+                                </SwiperSlide>
+                              ))}
+                          </Swiper>
+                        </div>
+                      </Box>
+                    </Modal>
                   </Grid2>
                 ))}
               </Fragment>

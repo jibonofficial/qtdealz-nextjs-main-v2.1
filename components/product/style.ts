@@ -46,6 +46,10 @@ export const formGrid: muiSxPropType = {
   },
   "& .MuiSelect-outlined": {
     display: "flex",
+    padding:1.5
+  },
+  "& .MuiInputBase-input": {
+    padding:1.4
   },
 };
 
