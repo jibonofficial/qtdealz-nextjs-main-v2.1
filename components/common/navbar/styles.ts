@@ -149,10 +149,10 @@ export const prodBox: muiSxPropType = {
 };
 
 export const notificationRelatedProductBox: muiSxPropType = {
-  maxHeight: {
-    xs: "calc(100vh - 250px)",
-    sm: "calc(100vh - 200px)",
-  },
+  // maxHeight: {
+  //   xs: "calc(100vh - 250px)",
+  //   sm: "calc(100vh - 200px)",
+  // },
   padding: 2,
   overflowY: "auto",
   "& a": {
