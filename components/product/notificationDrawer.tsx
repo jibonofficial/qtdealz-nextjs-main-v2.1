@@ -10,26 +10,19 @@ import {
   Rating
 } from "@mui/material";
 import { yellow } from "@mui/material/colors";
-import { useQuery } from "@tanstack/react-query";
+import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import Link from "next/link";
 import axios from "axios";
 import { useRouter } from "next/router";
-import { Products } from "../allTypes/productType";
+import { Products, ProductsData } from "../allTypes/productType";
 import React, { useEffect, useState } from "react";
 import { useRecoilState, useSetRecoilState } from "recoil";
 import { cartDrawerElAtom, notificationDrawerElAtom } from "../../atoms/atoms";
 import appConfig from "../../config";
 import { BlackButton } from "../common/styled/buttons";
 import * as styles from "../common/navbar/styles";
-import { Courgette } from "@next/font/google";
-
-export const ccurgette = Courgette({
-  weight: ["400"],
-  subsets: ["latin"],
-  display: "swap",
-  fallback: ["sans-serif"],
-});
+import { useIntersectionObserver } from "components/common/hooks/useIntersectionObserver";
 
 interface Props {
   open: boolean;
@@ -44,22 +37,60 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
   const setNotificaitonDrawerEl = useSetRecoilState(notificationDrawerElAtom);
   const [cartDrawerEl, setCartDrawerEl] = useRecoilState(cartDrawerElAtom);
   const isWidthSM = useMediaQuery(theme.breakpoints.down("sm"));
+  const [currPage, setCurrPage] = React.useState(0);
+  const targetElRef = React.useRef<HTMLButtonElement | null>(null);
   
-  const useRelatedProducts = useQuery({
-    queryKey: ["relatedProducts", categoryId],
-    queryFn: async () => {
-      const { data } = await axios.post("/api/store/product/catalog/query/get", {
+  // const useRelatedProducts = useQuery({
+  //   queryKey: ["relatedProducts", categoryId],
+  //   queryFn: async () => {
+  //     const { data } = await axios.post("/api/store/product/catalog/query/get", {
+  //       models: {
+  //         "location_data.website_remarks": `${appConfig.api.locationId}_Live`,
+  //         "category.value": categoryId,
+  //       },
+  //       skip: 0,
+  //       limit: 4,
+  //       sort: { modified_date: -1 },
+  //     });
+  //     return data as Products;
+  //   },
+  // });
+
+  useEffect(() => {
+    if (currPage !== 0) {
+      fetchNextPage();
+    } else {
+      refetch();
+    }
+  }, [currPage]);
+
+  const fetchProductsByCatId = async ({ pageParam = 0 }) => {
+    return (
+      await axios.post("/api/store/product/catalog/query/get", {
         models: {
           "location_data.website_remarks": `${appConfig.api.locationId}_Live`,
           "category.value": categoryId,
         },
-        skip: 0,
-        limit: 4,
-        sort: { modified_date: -1 },
-      });
-      return data as Products;
-    },
-  });
+        skip: pageParam,
+        limit: 32,
+      })
+    ).data.data as ProductsData[];
+  };
+
+  const {data, error, fetchNextPage, status, hasNextPage, refetch} = useInfiniteQuery(
+    [`catProductsa`],
+    fetchProductsByCatId,
+    {
+      getNextPageParam: (lastPage, allPages) => lastPage.length > 31 && currPage + 32,
+      refetchOnWindowFocus: false,
+      refetchOnMount: false,
+      cacheTime: 0,
+    }
+  );
+
+  const handleLoadMoreProds = () => {
+    setCurrPage((prevState) => prevState + 32);
+  };
 
   const handleViewCart = (event: any) => {
     setNotificaitonDrawerEl(false);
@@ -71,6 +102,14 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
       setNotificaitonDrawerEl(false);
     }
   };
+
+  const flattenedProductsData = data?.pages.flat();
+
+  useIntersectionObserver({
+    target: targetElRef,
+    onIntersect: handleLoadMoreProds,
+    enabled: hasNextPage,
+  });
 
   useEffect(() => {
     router.events.on("routeChangeStart", handleCloseNotificationDrawer);
@@ -95,7 +134,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               sm: 2,
               xs: 6,
             }}
-            bgcolor={`#FFF850`} 
+            bgcolor={yellow[600]} 
             p={1}
           >
             <Typography
@@ -105,10 +144,10 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               py={1}
               // bgcolor={yellow[600]}
             >
-              <span style={{ fontWeight: 700, fontSize: '24px', lineHeight: "138.52%",fontFamily: ccurgette.style.fontFamily, }}>Product successfully added</span>
+              <span style={{ fontWeight: 600, fontSize: '18px', lineHeight: "138.52%" }}>Product successfully added</span>
               <br />
-              <span style={{ color: "red", fontStyle: "italic", fontWeight: 600 }}>Add more Save more</span> - 10 {appConfig.product.currency} delivery charge. {" "}
-              <span style={{ color: "red" }}>FREE</span> Delivery above <span style={{ fontWeight: 700 }}>150 {appConfig.product.currency}</span>.
+              <span style={{ color: "red", fontStyle: "italic", fontWeight: 600 }}>Add more Save more</span> - 10 QAR delivery charge. {" "}
+              <span style={{ color: "red" }}>FREE</span> Delivery above <span style={{ fontWeight: 700 }}>150 QAR</span>.
             </Typography>
             <Grid container justifyContent="space-evenly">
               <Grid item>
@@ -134,8 +173,8 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
                 <span style={{ fontWeight: 700, fontSize: '20px', lineHeight: "138.52%" }}>Related Products</span>
             </Typography>
             <Grid container rowSpacing={{ xs: 1, md: 2 }} direction="column">
-              {useRelatedProducts &&
-                useRelatedProducts.data?.data.map((product, index) => (
+              {flattenedProductsData &&
+                flattenedProductsData.map((product, index) => (
                   <Grid
                     container
                     item
@@ -195,6 +234,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
                   </Grid>
                 ))}
             </Grid>
+            <Box ref={targetElRef} sx={{ py: 5 }} />
           </Box>
         </Box>
       </Box>
