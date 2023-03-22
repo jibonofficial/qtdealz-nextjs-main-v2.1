@@ -374,6 +374,10 @@ export const Product = ({ id }: { id: string }) => {
   const handleAddMore = () => {
     setOpenOrderModal(false);
   };
+  
+  const getRandomInt = () => {
+    return Math.floor(Math.random() * (9 - 6) + 6); // The maximum is exclusive and the minimum is inclusive
+  };
 
   const isCartMutating = (): boolean => {
     return addProdToCartMutation.isLoading || isCartFetching ? true : false;
@@ -498,8 +502,8 @@ export const Product = ({ id }: { id: string }) => {
             </Typography>
             <div style={{ padding: '0px 60px 0px 60px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
               <div style={{ width: '120px', height: '35px', borderRadius: '5px', backgroundColor: 'green', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>Sold{" "}
-              {productData?.quantity_sold}</div>
-              <div style={{ width: '120px', height: '35px', borderRadius: '5px', backgroundColor: 'red', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>Left{" "}{productData?.available_stock}</div>
+              {productData && productData?.quantity_sold > 0 ? productData.quantity_sold * 9 : 0}</div>
+              <div style={{ width: '120px', height: '35px', borderRadius: '5px', backgroundColor: 'red', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>Left{" "}{getRandomInt()}</div>
             </div>
             <form className="order-form" onSubmit={formik.handleSubmit}>
               <Grid container spacing={1} sx={styles.formGrid} justifyContent="center">
