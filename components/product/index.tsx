@@ -427,7 +427,7 @@ export const Product = ({ id }: { id: string }) => {
           <Grid item md={5} xs={12} sm={10}>
             <Typography
                 fontWeight={appStyles.w600}
-                fontSize={{ xs: "1.3rem", sm: "h5.fontSize" }}
+                fontSize={{ sm: "1.3rem",xs: ".9rem",  }}
                 color={appColors.blueDarkGrey}
                 gutterBottom
                 textAlign="center"
@@ -497,7 +497,7 @@ export const Product = ({ id }: { id: string }) => {
             >
               {productData?.special_offer_text}
             </Typography>
-            <Typography my={2} textAlign="center">
+            <Typography my={2} textAlign="center" fontSize={{ sm: "1rem",xs: ".8rem",  }}>
               <strong>Order Now - </strong> Fill the form below for quick checkout
             </Typography>
             <div style={{ padding: '0px 60px 0px 60px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
