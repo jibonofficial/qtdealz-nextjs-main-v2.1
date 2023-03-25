@@ -3,6 +3,8 @@ import { styled } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
 import { grey } from "@mui/material/colors";
 import { useRouter } from "next/router";
+import React from "react";
+
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -38,21 +40,27 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
+
+
 export const SearchBar = () => {
+  const [searchValue,setSearchValue] = React.useState<string>('')
   const router = useRouter();
+  const handleSearchFunc = () => {
+    const value = searchValue;
+    if (value.length > 0) {
+      router.push(`/search/${value}`);
+    }
+  }
   const handleSearch = (event: any) => {
     if (event.key === "Enter") {
       event.preventDefault();
-      const value = event.target.value;
-      if (value.length > 0) {
-        router.push(`/search/${value}`);
-      }
+      handleSearchFunc()
     }
   };
   return (
     <Search>
-      <StyledInputBase placeholder="Search…" inputProps={{ onKeyDown: handleSearch }} />
-      <SearchIconWrapper>
+      <StyledInputBase placeholder="Search…" onChange={(e) => setSearchValue(e.target.value)} inputProps={{ onKeyDown: handleSearch }} />
+      <SearchIconWrapper style={{cursor:'pointer',pointerEvents:'auto'}} onClick={handleSearchFunc}>
         <SearchIcon />
       </SearchIconWrapper>
     </Search>

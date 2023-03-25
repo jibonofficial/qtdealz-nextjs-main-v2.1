@@ -105,10 +105,13 @@ export const prodDiscountPrice: muiSxPropType = {
   },
 
   ':after':{
-    content:"'❌'",
+    content: "'X'",
     position: "absolute",
-    left: "30%",
-    top: 0,
+    left: "40%",
+    top: "-8px",
+    color: "red",
+    fontWeight: "lighter",
+    fontSize: "22px",
   }
 };
 
@@ -137,5 +140,5 @@ export const prodCatTitle: muiSxPropType = {
   fontWeight: appStyles.w500,
   textDecoration: "none",
   color: appColors.darkGrey,
-  mb: 4,
+  mb: 1,
 };

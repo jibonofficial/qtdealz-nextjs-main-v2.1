@@ -423,7 +423,7 @@ export const Product = ({ id }: { id: string }) => {
             }`}
           />
         )} */}
-        <Grid container mb={3} mt={3} justifyContent="space-evenly">
+        <Grid container mb={3} mt={1} justifyContent="space-evenly">
           <Grid item md={5} xs={12} sm={10}>
             <Typography
                 fontWeight={appStyles.w600}

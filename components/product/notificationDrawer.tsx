@@ -7,9 +7,9 @@ import {
   Typography,
   useMediaQuery,
   useTheme,
-  Rating
+  Rating,
 } from "@mui/material";
-import { yellow } from "@mui/material/colors";
+import { grey, yellow } from "@mui/material/colors";
 import { useInfiniteQuery, useQuery } from "@tanstack/react-query";
 
 import Link from "next/link";
@@ -23,6 +23,14 @@ import appConfig from "../../config";
 import { BlackButton } from "../common/styled/buttons";
 import * as styles from "../common/navbar/styles";
 import { useIntersectionObserver } from "components/common/hooks/useIntersectionObserver";
+import { Courgette } from "@next/font/google";
+
+export const ccurgette = Courgette({
+  weight: ["400"],
+  subsets: ["latin"],
+  display: "swap",
+  fallback: ["sans-serif"],
+});
 
 interface Props {
   open: boolean;
@@ -39,7 +47,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
   const isWidthSM = useMediaQuery(theme.breakpoints.down("sm"));
   const [currPage, setCurrPage] = React.useState(0);
   const targetElRef = React.useRef<HTMLButtonElement | null>(null);
-  
+
   // const useRelatedProducts = useQuery({
   //   queryKey: ["relatedProducts", categoryId],
   //   queryFn: async () => {
@@ -77,7 +85,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
     ).data.data as ProductsData[];
   };
 
-  const {data, error, fetchNextPage, status, hasNextPage, refetch} = useInfiniteQuery(
+  const { data, error, fetchNextPage, status, hasNextPage, refetch } = useInfiniteQuery(
     [`catProductsa`],
     fetchProductsByCatId,
     {
@@ -134,7 +142,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               sm: 2,
               xs: 6,
             }}
-            bgcolor={yellow[600]} 
+            bgcolor={yellow[600]}
             p={1}
           >
             <Typography
@@ -144,10 +152,22 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               py={1}
               // bgcolor={yellow[600]}
             >
-              <span style={{ fontWeight: 600, fontSize: '18px', lineHeight: "138.52%" }}>Product successfully added</span>
+              <span
+                style={{
+                  fontWeight: 700,
+                  fontSize: "24px",
+                  lineHeight: "138.52%",
+                  fontFamily: ccurgette.style.fontFamily,
+                }}
+              >
+                Product successfully added
+              </span>
               <br />
-              <span style={{ color: "red", fontStyle: "italic", fontWeight: 600 }}>Add more Save more</span> - 10 QAR delivery charge. {" "}
-              <span style={{ color: "red" }}>FREE</span> Delivery above <span style={{ fontWeight: 700 }}>150 QAR</span>.
+              <span style={{ color: "red", fontStyle: "italic", fontWeight: 600 }}>
+                Add more Save more
+              </span>{" "}
+              - 10 QAR delivery charge. <span style={{ color: "red" }}>FREE</span> Delivery above{" "}
+              <span style={{ fontWeight: 700 }}>150 QAR</span>.
             </Typography>
             <Grid container justifyContent="space-evenly">
               <Grid item>
@@ -161,16 +181,18 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
                 </BlackButton>
               </Grid>
             </Grid>
-            <br/>
+            <br />
           </Box>
           <Box sx={styles.notificationRelatedProductBox}>
             <Typography
-                variant="subtitle2"
-                my={1}
-                py={1}
-                // bgcolor={yellow[600]}
-              >
-                <span style={{ fontWeight: 700, fontSize: '20px', lineHeight: "138.52%" }}>Related Products</span>
+              variant="subtitle2"
+              my={1}
+              py={1}
+              // bgcolor={yellow[600]}
+            >
+              <span style={{ fontWeight: 700, fontSize: "20px", lineHeight: "138.52%" }}>
+                Related Products
+              </span>
             </Typography>
             <Grid container rowSpacing={{ xs: 1, md: 2 }} direction="column">
               {flattenedProductsData &&
@@ -197,37 +219,73 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
                     </Grid>
                     <Grid item>
                       <Typography variant="body2" component="div">
-                        <Link href={`/product/${product._id}`} className="cart-product-title" onClick={handleCloseNotificationDrawer}>
+                        <Link
+                          href={`/product/${product._id}`}
+                          className="cart-product-title"
+                          onClick={handleCloseNotificationDrawer}
+                        >
                           {product.product_name}
                         </Link>
                         <br />
-                        <Box sx={{ fontSize: '12px' }}>
-                          {product.product_sku}
-                        </Box>
-                        <Typography sx={{ fontWeight: 700, width: '60px', height: '20px', borderRadius: '5px', justifyContent: 'center', display: 'flex' }} variant="body2" noWrap bgcolor={yellow[600]} component="div">
-                          <span>
-                            <span style={{ fontSize: '10px', marginBottom: 5 }}>{appConfig.product.currency}</span>
-                            &nbsp; {product.location_data[0].discounted_price && product.location_data[0].discounted_price > 0 ? product.location_data[0].discounted_price : product.location_data[0].selling_price}
+                        <Box sx={{ fontSize: "12px" }}>{product.product_sku}</Box>
+
+                        <Typography
+                          sx={{
+                            fontWeight: 700,
+                            width: "60px",
+                            height: "20px",
+                            borderRadius: "5px",
+                            border: "1px solid #222222",
+                            color: "#fff",
+                            justifyContent: "center",
+                            display: "flex",
+                          }}
+                          variant="body2"
+                          noWrap
+                          bgcolor={grey[900]}
+                          component="div"
+                        >
+                          <span style={{color:'#fff'}}>
+                            <span style={{ fontSize: "10px", marginBottom: 5 }}>
+                              {appConfig.product.currency}
+                            </span>
+                            &nbsp;{" "}
+                            {product.location_data[0].discounted_price &&
+                            product.location_data[0].discounted_price > 0
+                              ? product.location_data[0].discounted_price
+                              : product.location_data[0].selling_price}
                           </span>
                         </Typography>
                         <Box sx={{ display: "flex", alignItems: "center" }}>
-                          <Rating name="read-only" sx={{ width: "100%", mr: 1 }} value={product.average_rating} readOnly /> 
+                          <Rating
+                            name="read-only"
+                            sx={{ width: "100%", mr: 1 }}
+                            value={product.average_rating}
+                            readOnly
+                          />
                           ({product.total_reviews})
                         </Box>
                       </Typography>
                     </Grid>
                     <Grid item ml="auto" mr={1}>
                       <Stack alignItems="center">
-                      <Link href={`/product/${product._id}`}>
-                        <BlackButton
-                          disableElevation
-                          sx={{fontSize: { xs: 13 }, fontWeight: 500, lineHeight: '19.39px'}}
-                          variant="contained"
-                          onClick={handleCloseNotificationDrawer}
-                        >
-                          View
-                        </BlackButton>
-                      </Link>
+                        <Link href={`/product/${product._id}`}>
+                          <BlackButton
+                            disableElevation
+                            sx={{
+                              fontSize: { xs: 13 },
+                              fontWeight: 500,
+                              lineHeight: "19.39px",
+                              backgroundColor: yellow[600],
+                              color: "#000",
+                              border: "1px solid #fdd835",
+                            }}
+                            variant="contained"
+                            onClick={handleCloseNotificationDrawer}
+                          >
+                            View
+                          </BlackButton>
+                        </Link>
                       </Stack>
                     </Grid>
                     <Divider />
@@ -240,4 +298,4 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
       </Box>
     </SwipeableDrawer>
   );
-}
+};

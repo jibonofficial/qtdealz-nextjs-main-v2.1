@@ -192,7 +192,7 @@ export const overralReviewsContainer: muiSxPropType = {
 };
 
 export const customerFeedbackContainer: muiSxPropType = {
-  py: 3,
+  py: 1,
 };
 
 export const productCommentsWrapper: muiSxPropType = {

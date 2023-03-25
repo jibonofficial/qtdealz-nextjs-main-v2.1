@@ -6,7 +6,7 @@ export const homeCompWrapper: muiSxPropType = {
     xs: 2,
     md: 5,
   },
-  pt:3,
+  pt:1,
   "& .banner-img": {
     width: "100%",
     borderRadius: {
