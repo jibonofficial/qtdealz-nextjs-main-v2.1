@@ -189,12 +189,12 @@ export default function Navbar() {
                       {category.category_name.toUpperCase()}
                     </Link>
                     {category.category_name.toUpperCase() == "CLEARANCE SALE" ? ( <img
-                        style={{ position: "absolute", top: 0, right: "10px",width:'24px',animation: "png-animatide .5s infinite" }}
+                        style={{ position: "absolute", top: '-4px', right: "10px",width:'32px',animation: "png-animatide 2s infinite" }}
                         src="/images/sale.png"
                       />) : null} 
                     {category.category_name.toUpperCase() == "NEW ARRIVAL" ? (
                       <img
-                        style={{ position: "absolute", top: 0, right: "10px",width:'24px',animation: "png-animatide .5s infinite" }}
+                        style={{ position: "absolute", top: '-4px', right: "10px",width:'32px',animation: "png-animatide 2s infinite" }}
                         src="/images/new.png"
                       />
                     ) : null}
