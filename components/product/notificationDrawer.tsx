@@ -191,7 +191,7 @@ export const NotificationDrawer = ({ open, categoryId, categoryName, toggleDrawe
               // bgcolor={yellow[600]}
             >
               <span style={{ fontWeight: 700, fontSize: "20px", lineHeight: "138.52%" }}>
-                Related Products
+              Top Sellers
               </span>
             </Typography>
             <Grid container rowSpacing={{ xs: 1, md: 2 }} direction="column">

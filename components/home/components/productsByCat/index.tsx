@@ -53,6 +53,7 @@ export default function ProductsByCat({ title, productsData, loading }: Props) {
       {title && (
         <Typography
           variant="h2"
+          fontSize={{ sm: "3.75rem",xs: "2.2rem",  }}
           textAlign="center"
           className={allura.className}
           color={grey[800]}
