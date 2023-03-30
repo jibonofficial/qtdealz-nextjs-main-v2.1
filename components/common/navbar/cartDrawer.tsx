@@ -266,7 +266,7 @@ export default function CartDrawer({ open, toggleDrawer }: Props) {
                       my={1}
                       fontWeight={appStyles.w600}
                     >
-                      Delivery address
+                      Delivery Address
                     </Typography>
                     <Stack direction={"row"} justifyContent="space-between">
                       <Box>
