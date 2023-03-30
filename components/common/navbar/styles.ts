@@ -44,8 +44,8 @@ export const appbarStyles: muiSxPropType = {
 };
 
 export const actionNavStyles: muiSxPropType = {
-  py: {
-    xs: 2,
+  msScrollSnapPointsY: {
+    xs: 1,
     md: 0,
   },
   background: {

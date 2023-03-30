@@ -285,3 +285,10 @@ footer .Mui-disabled {
   80%   { opacity: 0; }
   100%  { opacity: 1; }
 }
+
+
+@media screen and (max-width: 899px) {
+  .mui-style-1ugrs3c-MuiPaper-root-MuiAppBar-root{
+    position:  relative ;
+  }
+}
