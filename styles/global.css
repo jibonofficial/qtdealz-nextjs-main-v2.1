@@ -288,7 +288,8 @@ footer .Mui-disabled {
 
 
 @media screen and (max-width: 899px) {
-  .mui-style-1ugrs3c-MuiPaper-root-MuiAppBar-root{
+  .mui-style-1ugrs3c-MuiPaper-root-MuiAppBar-root,
+  .mui-style-1bc64jo{
     position:  relative ;
   }
 }
