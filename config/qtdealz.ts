@@ -21,7 +21,7 @@ const qtdealz: ConfigsType = {
   product: {
     currency: "QAR",
     // prettier-ignore
-    cities: ["Ain Khaled", "Al Ruwais", "Dukhan", "Lusail", "Mesaleed", "Ras Laffan", "Um Salal Ali", "Al Khor", "Al Rayyan", "Al Wakrah", "Doha"],
+    cities: ["Ain Khaled", "Al Ruwais", "Dukhan", "Lusail", "Mesaieed", "Ras Laffan", "Um Salal Ali", "Al Khor", "Al Rayyan", "Al Wakrah", "Doha"],
     whatsappShare:
       "https://api.whatsapp.com/send?phone=+97477857469&text=I%20just%20bought%20something%20amazing%20from%20this%20QATAR%20based%20website.%20Check%20out%20their%20cool%20products",
     invoiceLink: "https://office21.dealizzle.com/api/store/customer/order/pdf?order_number=",

@@ -311,19 +311,7 @@ export default function CartDrawer({ open, toggleDrawer }: Props) {
                           </Typography>
                         </TableCell>
                       </TableRow>
-                      <TableRow>
-                        <TableCell>Vat</TableCell>
-                        <TableCell align="right">
-                          <Typography
-                            variant="body2"
-                          >
-                            <b>
-                              {cartProducts ? cartProducts.cod_details.vat_amount : 0}
-                              &nbsp;{appConfig.product.currency}
-                            </b>
-                          </Typography>
-                        </TableCell>
-                      </TableRow>
+                     
                       <TableRow>
                         <TableCell>Shipping Fee</TableCell>
                         <TableCell align="right">

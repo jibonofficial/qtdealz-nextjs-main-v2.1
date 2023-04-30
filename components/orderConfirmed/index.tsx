@@ -54,12 +54,12 @@ export default function OrderConfirmed({ id }: { id: string }) {
                       <strong>Shipping:</strong> {orderData.delivery_charge}{" "}
                       <span>{appConfig.product.currency}</span>
                     </li>
-                    {appConfig.product.vat && (
+                    {/* {appConfig.product.vat && (
                       <li>
                         <strong>Vat:</strong> {orderData.vat_amount}{" "}
                         <span>{appConfig.product.currency}</span>
                       </li>
-                    )}
+                    )} */}
                     <li>
                       <strong>GRAND TOTAL:</strong> {orderData.total_amount}{" "}
                       <span>{appConfig.product.currency}</span>
