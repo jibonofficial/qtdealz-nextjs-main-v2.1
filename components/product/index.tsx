@@ -708,7 +708,7 @@ export const Product = ({ id }: { id: string }) => {
                         className="phone-text-field"
                         placeholder="Contact Number"
                         variant="outlined"
-                        type="number"
+                        type="tel"
                         fullWidth
                         InputProps={{
                           startAdornment: <InputAdornment position="start">+974</InputAdornment>,
