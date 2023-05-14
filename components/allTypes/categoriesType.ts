@@ -17,4 +17,5 @@ export interface CategoryType {
   posted_date: Date;
   __v: number;
   slug?: string;
+  items:any;
 }

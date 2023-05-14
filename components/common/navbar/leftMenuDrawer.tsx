@@ -1,4 +1,5 @@
 import {
+  Collapse,
   Divider,
   IconButton,
   List,
@@ -8,7 +9,7 @@ import {
   SwipeableDrawer,
 } from "@mui/material";
 import { styled, useTheme, Theme, CSSObject } from "@mui/material/styles";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Typography from "@mui/material/Typography";
@@ -23,6 +24,7 @@ import { useRecoilState } from "recoil";
 import { customerContactInfo } from "atoms/atoms";
 import { removeCustomerDetailsFromStorage, removeSessionId } from "../functions";
 import { appStyles } from "../appColors";
+import { ExpandLess, ExpandMore } from "@mui/icons-material";
 
 const DrawerHeader = styled("div")(({ theme }) => ({
   display: "flex",
@@ -44,9 +46,17 @@ export default function NavLeftSideMenuDrawer({ open, toggleDrawer }: Props) {
   const categories = queryClient.getQueryData<CategoryType[]>([appConfig.queryKeys.categories]);
   const [customerContInfo, setCustomerContInfo] = useRecoilState(customerContactInfo);
   const { catId } = router.query;
+  const [opensubmenu, setopensubmenu] = useState<any>([]);
+  const handleClicksubmenu = (i: number) => {
+    setopensubmenu((pre: any) => {
+      var newValue = [...pre];
+      newValue[i] = !newValue[i];
+      return newValue;
+    });
+  };
 
   const handleRoute = (route: string, event: any) => {
-    router.push(route);
+     router.push(route);
     toggleDrawer(false)(event); // should add event in separate functions. https://stackoverflow.com/questions/18234491/two-sets-of-parentheses-after-function-call
   };
   const handleLogout = (event: any) => {
@@ -56,6 +66,12 @@ export default function NavLeftSideMenuDrawer({ open, toggleDrawer }: Props) {
     setCustomerContInfo(null);
     queryClient.resetQueries(["cartProducts"]);
   };
+
+  useEffect(() => {
+    if (categories && !opensubmenu.length) {
+      categories.forEach((v) => setopensubmenu((pre: any) => [...pre, false]));
+    }
+  }, [categories]);
   return (
     <SwipeableDrawer
       anchor="left"
@@ -89,17 +105,57 @@ export default function NavLeftSideMenuDrawer({ open, toggleDrawer }: Props) {
                 </ListItemButton>
               </ListItem>
               {categories &&
-                categories.map((category) => (
-                  <ListItem key={category._id} disablePadding>
-                    <ListItemButton
-                      selected={catId === category._id}
-                      onClick={(event: any) =>
-                        handleRoute(`/category/${category._id}/${category.category_name}`, event)
-                      }
+                categories.map((category, i) => (
+                  <>
+                    <ListItem
+                      key={category._id}
+                      disablePadding
+                      onClick={() => {
+                        if (category.items.length) {
+                          handleClicksubmenu(i);
+                        }
+                      }}
                     >
-                      <ListItemText primary={category.category_name} />
-                    </ListItemButton>
-                  </ListItem>
+                      <ListItemButton
+                        selected={catId === category._id}
+                        onClick={(event: any) => {
+                          if (!category.items.length) {
+                            handleRoute(
+                              `/category/${category._id}/${category.category_name}`,
+                              event
+                            );
+                          }
+                        }}
+                      >
+                        <ListItemText primary={category.category_name} />
+                        {category.items.length ? (
+                          opensubmenu[i] ? (
+                            <ExpandLess />
+                          ) : (
+                            <ExpandMore />
+                          )
+                        ) : null}
+                      </ListItemButton>
+                    </ListItem>
+                    {category.items.length ? (
+                      <Collapse in={opensubmenu[i]} timeout="auto" unmountOnExit>
+                        <List sx={styles.mobileSubNavListItemStyles}>
+                          {category.items.map((v: any) => (
+                            <ListItem disablePadding key={v._id}>
+                              <ListItemButton
+                                selected={catId === v._id}
+                                onClick={(event: any) =>
+                                  handleRoute(`/category/${v._id}/${v.category_name}`, event)
+                                }
+                              >
+                                <ListItemText primary={v.category_name} />
+                              </ListItemButton>
+                            </ListItem>
+                          ))}
+                        </List>
+                      </Collapse>
+                    ) : null}
+                  </>
                 ))}
               {customerContInfo && (
                 <ListItem disablePadding>

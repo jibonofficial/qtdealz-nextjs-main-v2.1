@@ -18,7 +18,8 @@ export const navbarStyles: muiSxPropType = {
 export const appbarStyles: muiSxPropType = {
   "& .header-logo": {
     maxHeight: {
-      xs: "60px",
+      xs: "50px",
+      padding:"8px 0",
     },
   },
   "& .nav-item": {
@@ -27,13 +28,18 @@ export const appbarStyles: muiSxPropType = {
     fontSize: "0.875em",
     cursor: "pointer",
     textDecoration: "none",
+    display:'flex',
+    alignItems:'center',
     "&:hover": {
       color: appColors.darkPrimary,
     },
   },
   "& .nav-cat-container": {
     px: 0,
-    py:1
+    py:1,
+    "&:hover  .sub-menu-container": {
+     display:'block',
+    },
   },
   "& .nav-cat-container a": {
     textDecoration: "none",
@@ -41,6 +47,15 @@ export const appbarStyles: muiSxPropType = {
   "& .nav-item-active": {
     borderBottom: `3px solid ${appColors.primary}`,
   },
+  "& .sub-menu-container": {
+    position: "fixed",
+    background: "#fff",
+    padding: "10px",
+    margin: "0",
+    display:'none',
+    minWidth:'90px'
+  },
+  position: { xs: "relative", md: "fixed" } 
 };
 
 export const actionNavStyles: muiSxPropType = {
@@ -219,6 +234,22 @@ export const mobileNavListItemStyles: muiSxPropType = {
     },
     borderRight: `3px solid ${brown[400]}`,
   },
+};
+
+export const mobileSubNavListItemStyles: muiSxPropType = {
+  "& .MuiTypography-root": {},
+  "& .MuiListItemButton-root": {
+    px: 4,
+  },
+  "& .Mui-selected": {
+    background: `${appColors.lighYellow} !important`,
+    "& .MuiTypography-root": {
+      fontWeight: appStyles.w600,
+    },
+    borderRight: `3px solid ${brown[400]}`,
+    
+  },
+  marginLeft: '20px'
 };
 
 export const topBanner: muiSxPropType = {

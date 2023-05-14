@@ -27,6 +27,7 @@ import NavLeftSideMenuDrawer from "./leftMenuDrawer";
 import { SearchBar } from "./searchBar";
 import * as styles from "./styles";
 import CancelIcon from "@mui/icons-material/Cancel";
+import { ExpandMore } from "@mui/icons-material";
 
 export default function Navbar() {
   const queryClient = useQueryClient();
@@ -73,10 +74,10 @@ export default function Navbar() {
   const handleScroll = () => {
     const position = window.pageYOffset || document.documentElement.scrollTop;
     console.log(position);
-    if(position > 210){
-      setFixedSearchbar(true)
-    }else{
-      setFixedSearchbar(false)
+    if (position > 210) {
+      setFixedSearchbar(true);
+    } else {
+      setFixedSearchbar(false);
     }
   };
 
@@ -90,13 +91,7 @@ export default function Navbar() {
 
   return (
     <Box sx={styles.navbarStyles} className={displayTopBanner ? "navbar-with-topbanner" : "navbar"}>
-   
-        <AppBar
-        position="fixed"
-        color="inherit"
-        elevation={0}
-        sx={styles.appbarStyles}
-      >
+      <AppBar position="fixed" color="inherit" elevation={0} sx={styles.appbarStyles}>
         {displayTopBanner && (
           <Box sx={styles.topBanner}>
             <Container maxWidth="lg" disableGutters>
@@ -231,7 +226,32 @@ export default function Navbar() {
                       className="nav-item"
                     >
                       {category.category_name.toUpperCase()}
+                      {category.items.length ?  <ExpandMore />  : null}
+                     
                     </Link>
+
+                    {category.items.length ? (
+                      <ul className="sub-menu-container">
+                        {category.items.map((v:any) => (
+                          <Grid2
+                          component="li"
+                          key={v._id}
+                          className={`nav-cat-container ${
+                            catId === v._id ? "nav-item-active" : ""
+                          }`}
+                          style={{ position: "relative" }}
+                        >
+                          <Link
+                            href={`/category/${v._id}/${v.category_name}`}
+                            className="nav-item"
+                          >
+                            {v.category_name.toUpperCase()}
+                          </Link>
+                        </Grid2>
+                        ))}
+                      </ul>
+                    ) : null}
+
                     {category.category_name.toUpperCase() == "CLEARANCE SALE" ? (
                       <img
                         style={{
@@ -265,15 +285,21 @@ export default function Navbar() {
           <SearchBar />
         </Box>
       </AppBar>
-    
+
       {fixedSearchbar && (
-  <AppBar position="fixed" color="inherit" elevation={0} sx={styles.appbarStyles} style={{position:'fixed'}}>
-  <Box sx={{ display: { xs: "flex", md: "none" } }} mx={2} py={1.5}>
-    <SearchBar />
-  </Box>
-</AppBar>
-      ) }
-    
+        <AppBar
+          position="fixed"
+          color="inherit"
+          elevation={0}
+          sx={styles.appbarStyles}
+          style={{ position: "fixed" }}
+        >
+          <Box sx={{ display: { xs: "flex", md: "none" } }} mx={2} py={1.5}>
+            <SearchBar />
+          </Box>
+        </AppBar>
+      )}
+
       <CartDrawer open={cartDrawerEl} toggleDrawer={toggleCartDrawer} />
       <NavLeftSideMenuDrawer open={anchorLeftMenuEl} toggleDrawer={toggleLeftMenuDrawer} />
     </Box>
