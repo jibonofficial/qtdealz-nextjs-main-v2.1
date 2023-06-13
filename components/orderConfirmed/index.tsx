@@ -47,7 +47,7 @@ export default function OrderConfirmed({ id }: { id: string }) {
                 <Grid>
                   <Box component="ul" sx={styles.priceContainer}>
                     <li>
-                      <strong>Product Total:</strong>&nbsp;{orderData.order_price}{" "}
+                      <strong>Product Total:</strong>&nbsp;{(orderData.order_price).toFixed(2)}{" "}
                       <span>{appConfig.product.currency}</span>
                     </li>
                     <li>
