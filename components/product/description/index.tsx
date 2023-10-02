@@ -45,18 +45,18 @@ export default function DescriptionTabs({ productId, finePrint, productDescripti
     <ThemeProvider theme={productDescTheme}>
       <Box>
         <Tabs value={value} onChange={handleChange} variant="scrollable" scrollButtons="auto">
-          <Tab label="Reviews" />
+          {/* <Tab label="Reviews" /> */}
           <Tab label="Fine Print" />
           <Tab label="Description" />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      {/* <TabPanel value={value} index={0}>
         <ProductReviews productId={productId} />
-      </TabPanel>
-      <TabPanel value={value} index={1}>
+      </TabPanel> */}
+      <TabPanel value={value} index={0}>
         <Box sx={{}}>{finePrint && <div dangerouslySetInnerHTML={{ __html: finePrint }} />}</Box>
       </TabPanel>
-      <TabPanel value={value} index={2}>
+      <TabPanel value={value} index={1}>
         <Box sx={{}}>
           {productDescription && <div dangerouslySetInnerHTML={{ __html: productDescription }} />}
         </Box>
