@@ -825,12 +825,12 @@ export const Product = ({ id }: { id: string }) => {
           </Grid>
         </Grid>
         <Box>
-          <DescriptionTabs
+          {/* <DescriptionTabs
             productId={id}
             finePrint={productData?.fine_print}
             productDescription={productData?.product_description}
           />
-          <ProductFeedback productId={id} />
+          <ProductFeedback productId={id} /> */}
           {productCategory && (
             <RelatedProducts
               categoryId={productCategory.value}
