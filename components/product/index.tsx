@@ -107,7 +107,7 @@ export const Product = ({ id }: { id: string }) => {
     ) {
       return;
     }
-  
+
     setNotificationDrawerEl(open);
   };
 
@@ -274,7 +274,7 @@ export const Product = ({ id }: { id: string }) => {
         if (subSKU) {
           setSelectedSubSku(subSKU);
           productInventoryMutation.mutate(subSKU._id);
-         
+
         }
       } else {
         let subSKU: SubSku | undefined;
@@ -298,13 +298,13 @@ export const Product = ({ id }: { id: string }) => {
     return () => {
       productInventoryMutation.reset();
     };
-  }, [formik.values.colorValue,formik.values.sizeValue,formik.values.designValue]);
+  }, [formik.values.colorValue, formik.values.sizeValue, formik.values.designValue]);
 
   useEffect(() => {
     if (!productInventoryBulkMutation.data) {
       productInventoryBulkMutation.mutate();
     }
-  },[productInventoryBulkMutation.data])
+  }, [productInventoryBulkMutation.data])
   const getAllProdAttrData = ({
     colorValue,
     sizeValue,
@@ -377,7 +377,7 @@ export const Product = ({ id }: { id: string }) => {
   const handleAddMore = () => {
     setOpenOrderModal(false);
   };
-  
+
   const getRandomInt = () => {
     return Math.floor(Math.random() * (9 - 6) + 6); // The maximum is exclusive and the minimum is inclusive
   };
@@ -429,13 +429,13 @@ export const Product = ({ id }: { id: string }) => {
         <Grid container mb={3} mt={1} justifyContent="space-evenly">
           <Grid item md={5} xs={12} sm={10}>
             <Typography
-                fontWeight={appStyles.w600}
-                fontSize={{ sm: "1.3rem",xs: ".9rem",  }}
-                color={appColors.blueDarkGrey}
-                gutterBottom
-                textAlign="center"
-              >
-                {productData?.product_name} - <span style={{fontSize:16, fontWeight: 400, marginBottom: 4}}>SKU-{productData?.product_sku}</span>
+              fontWeight={appStyles.w600}
+              fontSize={{ sm: "1.3rem", xs: ".9rem", }}
+              color={appColors.blueDarkGrey}
+              gutterBottom
+              textAlign="center"
+            >
+              {productData?.product_name} - <span style={{ fontSize: 16, fontWeight: 400, marginBottom: 4 }}>SKU-{productData?.product_sku}</span>
             </Typography>
             {sliderImages && (
               <Slider images={sliderImages} youtubeLink={productData?.youtube_link} />
@@ -475,11 +475,16 @@ export const Product = ({ id }: { id: string }) => {
               {locationData && locationData.discounted_price > 0 && (
                 <>
                   <Typography sx={styles.discountPrice}>
-                    Was&nbsp;
+                    <del>
+                      Was&nbsp;
+                      {appConfig.product.currency}&nbsp;
+                      {locationData.selling_price}
+                    </del>
+                    {/* Was&nbsp;
                     <span className="cross">
                       {appConfig.product.currency}&nbsp;
                       {locationData.selling_price}
-                    </span>
+                    </span> */}
                   </Typography>
                   <Typography sx={{ ...styles.priceDetails, color: "red" }}>
                     {getProdDiscountPercentage(
@@ -500,12 +505,12 @@ export const Product = ({ id }: { id: string }) => {
             >
               {productData?.special_offer_text}
             </Typography>
-            <Typography my={2} textAlign="center" fontSize={{ sm: "1rem",xs: ".8rem",  }}>
+            <Typography my={2} textAlign="center" fontSize={{ sm: "1rem", xs: ".8rem", }}>
               <strong>Order Now - </strong> Fill the form below for quick checkout
             </Typography>
-            <div style={{ padding: '0px 60px 0px 60px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px'}}>
+            <div style={{ padding: '0px 60px 0px 60px', display: 'flex', justifyContent: 'space-between', marginBottom: '20px' }}>
               <div style={{ width: '120px', height: '35px', borderRadius: '5px', backgroundColor: 'green', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>Sold{" "}
-              {productData && productData?.quantity_sold > 0 ? productData.quantity_sold * 9 : 0}</div>
+                {productData && productData?.quantity_sold > 0 ? productData.quantity_sold * 9 : 0}</div>
               <div style={{ width: '120px', height: '35px', borderRadius: '5px', backgroundColor: 'red', display: 'flex', justifyContent: 'center', alignItems: 'center', color: 'white' }}>Left{" "}{getRandomInt()}</div>
             </div>
             <form className="order-form" onSubmit={formik.handleSubmit}>
@@ -639,8 +644,8 @@ export const Product = ({ id }: { id: string }) => {
                           const possibleSubSku = selectedColor
                             ? `${productData.product_sku}-${selectedColor.text}-${text}`
                             : selectedDesign
-                            ? `${productData.product_sku}-${selectedDesign.text}-${text}`
-                            : `${productData.product_sku}-${text}`;
+                              ? `${productData.product_sku}-${selectedDesign.text}-${text}`
+                              : `${productData.product_sku}-${text}`;
                           const sizeSubSkuData =
                             productInventoryBulkMutation.data &&
                             productInventoryBulkMutation.data.find(
@@ -713,7 +718,7 @@ export const Product = ({ id }: { id: string }) => {
                         InputProps={{
                           startAdornment: <InputAdornment position="start">+974</InputAdornment>,
                         }}
-                        
+
                         onBlur={formik.handleChange}
                         error={formik.touched.phone && Boolean(formik.errors.phone)}
                         helperText={formik.touched.phone && formik.errors.phone}
@@ -839,12 +844,12 @@ export const Product = ({ id }: { id: string }) => {
           )}
         </Box>
         {productCategory && (
-            <NotificationDrawer 
-              open={notificationDrawerEl}
-              categoryId={productCategory.value}
-              categoryName={productCategory.text} 
-              toggleDrawer={toggleNotificaitonDrawer} 
-            />
+          <NotificationDrawer
+            open={notificationDrawerEl}
+            categoryId={productCategory.value}
+            categoryName={productCategory.text}
+            toggleDrawer={toggleNotificaitonDrawer}
+          />
         )}
         <ProductOutOfStockModal open={outOfStockModalOpen} onClose={handleOutOfStockModalClose} />
         <NegativeInventoryModal

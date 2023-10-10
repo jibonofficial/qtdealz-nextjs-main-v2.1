@@ -15,24 +15,25 @@ export const WhatsappFab = () => {
           sm: 30,
         },
         right: {
-          xs:10,
-          sm:30
+          xs: 10,
+          sm: 30
         },
-        zIndex:999999
+        zIndex: 999999
       }}
     >
       <Stack spacing={1} alignItems="center">
         <Fab
-        size={isWidthSM ? 'small' : 'large'}
-          sx={{ bgcolor: "#25D366",size:'small' }}
+          size={isWidthSM ? 'small' : 'large'}
+          sx={{ bgcolor: "#25D366", size: 'small' }}
           onClick={() => {
             window.open(appConfig.contact.whatsapp);
           }}
         >
-          <WhatsAppIcon  fontSize={isWidthSM ? 'small' : 'large'}  sx={{ color: "white", "&:hover": { color: "#25D366" } }} />
+          <WhatsAppIcon fontSize={isWidthSM ? 'small' : 'large'} sx={{ color: "white", "&:hover": { color: "#25D366" } }} />
         </Fab>
-        <Paper elevation={6} sx={{ fontSize: "body1.fontSize", px: 1, py: 0.5 }}>
-          Live Chat
+        <Paper elevation={6} sx={{ fontSize: "0.7em", px: 1, py: 0.5 }}>
+          Order on Whatsapp <br />
+          WhatsApp اطلب عبر
         </Paper>
       </Stack>
     </Box>

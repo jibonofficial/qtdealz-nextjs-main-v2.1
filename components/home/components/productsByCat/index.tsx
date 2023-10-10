@@ -53,7 +53,7 @@ export default function ProductsByCat({ title, productsData, loading }: Props) {
       {title && (
         <Typography
           variant="h2"
-          fontSize={{ sm: "3.75rem",xs: "2.2rem",  }}
+          fontSize={{ sm: "3.75rem", xs: "2.2rem", }}
           textAlign="center"
           className={allura.className}
           color={grey[800]}
@@ -173,6 +173,14 @@ export default function ProductsByCat({ title, productsData, loading }: Props) {
                         </Box>
                       </Box>
                       <Box sx={{ mx: { sm: 2, xs: 1 }, pb: 2 }}>
+                        <Stack direction={"row"} justifyContent="space-between" alignItems="center">
+                          <Typography variant="body2" sx={styles.prodTitle} noWrap={false}>
+                            {item.product_name}
+                          </Typography>
+                          <Box component="span" style={{ backgroundColor: "#ffeb3b", color: '#222222' }} sx={styles.saleText}>
+                            View
+                          </Box>
+                        </Stack>
                         <Typography
                           variant="body2"
                           sx={{
@@ -189,8 +197,10 @@ export default function ProductsByCat({ title, productsData, loading }: Props) {
                           {locationData.discounted_price > 0 && (
                             <>
                               <Box component="span" sx={styles.prodDiscountPrice}>
-                                {appConfig.product.currency}&nbsp;
-                                {locationData.selling_price}
+                                <del>
+                                  {appConfig.product.currency}&nbsp;
+                                  {locationData.selling_price}
+                                </del>
                               </Box>
                             </>
                           )}
@@ -200,14 +210,7 @@ export default function ProductsByCat({ title, productsData, loading }: Props) {
                             </Box>
                           )}
                         </Typography>
-                        <Stack direction={"row"} justifyContent="space-between" alignItems="center">
-                          <Typography variant="body2" sx={styles.prodTitle} noWrap={false}>
-                            {item.product_name}
-                          </Typography>
-                          <Box component="span" style={{backgroundColor: "#ffeb3b",color:'#222222'}} sx={styles.saleText}>
-                            View
-                          </Box>
-                        </Stack>
+
                       </Box>
                     </Paper>
                   </Link>

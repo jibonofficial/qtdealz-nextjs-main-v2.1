@@ -79,7 +79,7 @@ export const prodPriceText: muiSxPropType = {
   display: "flex",
   alignItems: "center",
   my: 0.5,
-  fontWeight: "700",
+  fontWeight: "500",
   fontSize: {
     xs: "16px",
   },
@@ -98,21 +98,21 @@ export const prodDiscountPrice: muiSxPropType = {
   color: grey[500],
   ml: 1,
   fontSize: {
-    xs: "13px",
+    xs: "16px",
   },
   "@media (max-width: 405px)": {
-    fontSize: "11px",
+    fontSize: "13px",
   },
 
-  ':after':{
-    content: "'X'",
-    position: "absolute",
-    left: "40%",
-    top: "-8px",
-    color: "red",
-    fontWeight: "lighter",
-    fontSize: "22px",
-  }
+  // ':after':{
+  //   content: "'X'",
+  //   position: "absolute",
+  //   left: "40%",
+  //   top: "-8px",
+  //   color: "red",
+  //   fontWeight: "lighter",
+  //   fontSize: "22px",
+  // }
 };
 
 
