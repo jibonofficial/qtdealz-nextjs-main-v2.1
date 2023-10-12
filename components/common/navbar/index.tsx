@@ -96,16 +96,16 @@ export default function Navbar() {
           <Box sx={styles.topBanner}>
             <Container maxWidth="lg" disableGutters>
               <Grid2 container alignItems={"center"} wrap="nowrap" sx={styles.topBanner}>
-                <Grid2>
+                {/* <Grid2>
                   <img
                     onClick={openTheqaUrl}
                     src="/images/theqa_logo.png"
                     className="theqa-logo"
                     alt="theqa logo"
                   />
-                </Grid2>
+                </Grid2> */}
                 <Grid2 xs={9}>
-                  <Typography color={"#ffffff"} className="top-banner-text" onClick={openTheqaUrl}>
+                  <Typography color={"#ffffff"} className="top-banner-text" >
                     <i>
                       Buy with Confidence. We are <strong>certified by THEQA</strong> - Qatar
                       Ministry of Communication & Transport

@@ -255,6 +255,7 @@ export const mobileSubNavListItemStyles: muiSxPropType = {
 export const topBanner: muiSxPropType = {
   background: appColors.darkGrey,
   py: "2px",
+  pl:"18px",
   "& .theqa-logo": {
     display: "block",
     cursor: "pointer",
@@ -271,7 +272,7 @@ export const topBanner: muiSxPropType = {
     },
   },
   "& .top-banner-text": {
-    cursor: "pointer",
+    // cursor: "pointer",
     fontSize: {
       xs: 12,
       sm: 14,

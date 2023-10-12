@@ -143,7 +143,8 @@ const Footer = () => {
             </AccordionSummary>
             <AccordionDetails>
               <div className="accordion-details footer-address">
-                <span>{appConfig.contact.address}</span>
+                {/* <span>{appConfig.contact.address}</span> */}
+                <span>Media  City</span>
                 <Divider sx={{ backgroundColor: "#444444", marginY: "10px" }} />
                 <Stack spacing={1}>
                   <Stack direction="row" spacing={1} alignItems="center">
