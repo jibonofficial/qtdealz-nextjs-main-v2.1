@@ -89,38 +89,40 @@ export default function Navbar() {
     };
   }, []);
 
+  // {displayTopBanner && (
+  //   <Box sx={styles.topBanner}>
+  //     <Container maxWidth="lg" disableGutters>
+  //       <Grid2 container alignItems={"center"} wrap="nowrap" sx={styles.topBanner}>
+  //         {/* <Grid2>
+  //           <img
+  //             onClick={openTheqaUrl}
+  //             src="/images/theqa_logo.png"
+  //             className="theqa-logo"
+  //             alt="theqa logo"
+  //           />
+  //         </Grid2> */}
+  //         <Grid2 xs={9}>
+  //           <Typography color={"#ffffff"} className="top-banner-text" >
+  //             <i>
+  //               Buy with Confidence. We are <strong>certified by THEQA</strong> - Qatar
+  //               Ministry of Communication & Transport
+  //             </i>
+  //           </Typography>
+  //         </Grid2>
+  //         <Grid2 xsOffset={"auto"}>
+  //           <IconButton sx={{ color: "#ffffff" }} onClick={() => setDisplayTopBanner(false)}>
+  //             <CancelIcon />
+  //           </IconButton>
+  //         </Grid2>
+  //       </Grid2>
+  //     </Container>
+  //   </Box>
+  // )}
+
   return (
     <Box sx={styles.navbarStyles} className={displayTopBanner ? "navbar-with-topbanner" : "navbar"}>
       <AppBar position="fixed" color="inherit" elevation={0} sx={styles.appbarStyles}>
-        {displayTopBanner && (
-          <Box sx={styles.topBanner}>
-            <Container maxWidth="lg" disableGutters>
-              <Grid2 container alignItems={"center"} wrap="nowrap" sx={styles.topBanner}>
-                {/* <Grid2>
-                  <img
-                    onClick={openTheqaUrl}
-                    src="/images/theqa_logo.png"
-                    className="theqa-logo"
-                    alt="theqa logo"
-                  />
-                </Grid2> */}
-                <Grid2 xs={9}>
-                  <Typography color={"#ffffff"} className="top-banner-text" >
-                    <i>
-                      Buy with Confidence. We are <strong>certified by THEQA</strong> - Qatar
-                      Ministry of Communication & Transport
-                    </i>
-                  </Typography>
-                </Grid2>
-                <Grid2 xsOffset={"auto"}>
-                  <IconButton sx={{ color: "#ffffff" }} onClick={() => setDisplayTopBanner(false)}>
-                    <CancelIcon />
-                  </IconButton>
-                </Grid2>
-              </Grid2>
-            </Container>
-          </Box>
-        )}
+
         <Box sx={styles.actionNavStyles}>
           <Container maxWidth="lg">
             <Grid2 container component="nav" alignItems={"center"} spacing={{ xs: 2, sm: 3 }}>
@@ -216,9 +218,8 @@ export default function Navbar() {
                   <Grid2
                     component="li"
                     key={category._id}
-                    className={`nav-cat-container ${
-                      catId === category._id ? "nav-item-active" : ""
-                    }`}
+                    className={`nav-cat-container ${catId === category._id ? "nav-item-active" : ""
+                      }`}
                     style={{ position: "relative" }}
                   >
                     <Link
@@ -226,28 +227,27 @@ export default function Navbar() {
                       className="nav-item"
                     >
                       {category.category_name.toUpperCase()}
-                      {category.items.length ?  <ExpandMore />  : null}
-                     
+                      {category.items.length ? <ExpandMore /> : null}
+
                     </Link>
 
                     {category.items.length ? (
                       <ul className="sub-menu-container">
-                        {category.items.map((v:any) => (
+                        {category.items.map((v: any) => (
                           <Grid2
-                          component="li"
-                          key={v._id}
-                          className={`nav-cat-container ${
-                            catId === v._id ? "nav-item-active" : ""
-                          }`}
-                          style={{ position: "relative" }}
-                        >
-                          <Link
-                            href={`/category/${v._id}/${v.category_name}`}
-                            className="nav-item"
+                            component="li"
+                            key={v._id}
+                            className={`nav-cat-container ${catId === v._id ? "nav-item-active" : ""
+                              }`}
+                            style={{ position: "relative" }}
                           >
-                            {v.category_name.toUpperCase()}
-                          </Link>
-                        </Grid2>
+                            <Link
+                              href={`/category/${v._id}/${v.category_name}`}
+                              className="nav-item"
+                            >
+                              {v.category_name.toUpperCase()}
+                            </Link>
+                          </Grid2>
                         ))}
                       </ul>
                     ) : null}
